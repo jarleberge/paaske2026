@@ -23,102 +23,65 @@
     pointer-events: none; z-index: 999;
   }
   header {
-    text-align: center;
-    margin-bottom: 24px;
+    text-align: center; margin-bottom: 24px;
     border-bottom: 1px solid #00ff6455;
-    padding-bottom: 20px;
-    width: 100%;
-    max-width: 700px;
+    padding-bottom: 20px; width: 100%; max-width: 700px;
   }
   .logo { font-size: 11px; color: #00ff6488; letter-spacing: 4px; margin-bottom: 8px; }
   h1 { font-size: clamp(20px, 5vw, 34px); color: #00ff64; text-shadow: 0 0 20px #00ff6466; letter-spacing: 3px; }
   .subtitle { font-size: 11px; color: #666; margin-top: 6px; letter-spacing: 2px; }
-
-.progress-bar {
-width: 100%; max-width: 700px;
-background: #111; border: 1px solid #00ff6422;
-border-radius: 2px; height: 5px; margin-bottom: 28px; overflow: hidden;
-}
-.progress-fill { height: 100%; background: #00ff64; transition: width 0.7s ease; box-shadow: 0 0 8px #00ff64; }
-
-.card {
-background: #0b150d;
-border: 1px solid #00ff6428;
-border-radius: 3px;
-padding: 24px 22px;
-max-width: 700px;
-width: 100%;
-margin-bottom: 18px;
-box-shadow: 0 0 24px #00ff6408;
-}
-.post-header {
-display: flex; align-items: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap;
-}
-.badge {
-background: #00ff64; color: #000; font-weight: bold;
-font-size: 11px; padding: 3px 9px; border-radius: 2px; letter-spacing: 1px; white-space: nowrap;
-}
-.post-title { font-size: 16px; color: #00ff64; letter-spacing: 1px; }
-.solved-mark { color: #00ff64; margin-left: auto; font-size: 14px; }
-
-.briefing {
-background: #060f07; border-left: 3px solid #00ff6466;
-padding: 13px 15px; margin-bottom: 18px;
-font-size: 14px; line-height: 1.75; color: #bbb;
-}
-.hint-box {
-background: #0a1a0c; border: 1px dashed #00ff6444;
-border-radius: 3px; padding: 13px 15px; margin-bottom: 18px;
-font-size: 13px; color: #999; line-height: 1.6;
-}
-.hint-box strong { color: #00ff64; }
-
-.tire-img {
-width: 100%; max-width: 340px; display: block; margin: 0 auto 16px;
-border-radius: 3px; border: 1px solid #00ff6433;
-filter: blur(2.5px) brightness(0.7) saturate(0.4);
-}
-
-.input-row { display: flex; gap: 10px; flex-wrap: wrap; }
-input[type=“text”] {
-flex: 1; min-width: 120px;
-background: #000; border: 1px solid #00ff6455;
-color: #00ff64; font-family: ‘Courier New’, monospace;
-font-size: 18px; padding: 10px 14px; border-radius: 2px;
-outline: none; letter-spacing: 3px; text-transform: uppercase;
-transition: border-color 0.3s;
-}
-input[type=“text”]:focus { border-color: #00ff64; box-shadow: 0 0 10px #00ff6433; }
-button {
-background: #00ff64; color: #000; border: none;
-font-family: ‘Courier New’, monospace; font-weight: bold;
-font-size: 13px; padding: 10px 18px; border-radius: 2px;
-cursor: pointer; letter-spacing: 1px; transition: all 0.2s;
-white-space: nowrap;
-}
-button:hover { background: #00cc50; box-shadow: 0 0 12px #00ff6466; }
-.error {
-color: #ff4444; font-size: 12px; margin-top: 10px;
-display: none; letter-spacing: 1px;
-}
-
-.complete-screen {
-text-align: center; padding: 40px 20px; display: none;
-max-width: 700px; width: 100%;
-}
-.egg { font-size: 80px; margin-bottom: 20px; display: block; animation: bounce 1s ease-in-out infinite; }
-@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-16px)} }
-.complete-screen h2 { color: #00ff64; font-size: 26px; margin-bottom: 16px; letter-spacing: 2px; }
-.complete-screen p { color: #aaa; font-size: 15px; line-height: 1.8; }
-.complete-screen .highlight { color: #00ff64; font-weight: bold; }
-
-.transmission { font-size: 11px; color: #00ff6444; letter-spacing: 3px; text-align: center; margin-top: 30px; }
-.blink { animation: blink 1.3s step-end infinite; }
-@keyframes blink { 50%{opacity:0} }
-
-.start-btn { font-size: 15px; padding: 13px 28px; margin-top: 4px; }
+  .progress-bar {
+    width: 100%; max-width: 700px; background: #111;
+    border: 1px solid #00ff6422; border-radius: 2px; height: 5px; margin-bottom: 28px; overflow: hidden;
+  }
+  .progress-fill { height: 100%; background: #00ff64; transition: width 0.7s ease; box-shadow: 0 0 8px #00ff64; }
+  .card {
+    background: #0b150d; border: 1px solid #00ff6428; border-radius: 3px;
+    padding: 24px 22px; max-width: 700px; width: 100%; margin-bottom: 18px;
+    box-shadow: 0 0 24px #00ff6408;
+  }
+  .post-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+  .badge { background: #00ff64; color: #000; font-weight: bold; font-size: 11px; padding: 3px 9px; border-radius: 2px; letter-spacing: 1px; white-space: nowrap; }
+  .post-title { font-size: 16px; color: #00ff64; letter-spacing: 1px; }
+  .solved-mark { color: #00ff64; margin-left: auto; font-size: 14px; }
+  .post-illustration { display: block; margin: 0 auto 18px; opacity: 0.85; }
+  .briefing {
+    background: #060f07; border-left: 3px solid #00ff6466;
+    padding: 13px 15px; margin-bottom: 18px;
+    font-size: 14px; line-height: 1.75; color: #bbb;
+  }
+  .hint-box {
+    background: #0a1a0c; border: 1px dashed #00ff6444;
+    border-radius: 3px; padding: 13px 15px; margin-bottom: 18px;
+    font-size: 13px; color: #999; line-height: 1.6;
+  }
+  .hint-box strong { color: #00ff64; }
+  .input-row { display: flex; gap: 10px; flex-wrap: wrap; }
+  input[type="text"] {
+    flex: 1; min-width: 120px; background: #000; border: 1px solid #00ff6455;
+    color: #00ff64; font-family: 'Courier New', monospace; font-size: 18px;
+    padding: 10px 14px; border-radius: 2px; outline: none;
+    letter-spacing: 3px; text-transform: uppercase; transition: border-color 0.3s;
+  }
+  input[type="text"]:focus { border-color: #00ff64; box-shadow: 0 0 10px #00ff6433; }
+  button {
+    background: #00ff64; color: #000; border: none;
+    font-family: 'Courier New', monospace; font-weight: bold;
+    font-size: 13px; padding: 10px 18px; border-radius: 2px;
+    cursor: pointer; letter-spacing: 1px; transition: all 0.2s; white-space: nowrap;
+  }
+  button:hover { background: #00cc50; box-shadow: 0 0 12px #00ff6466; }
+  .error { color: #ff4444; font-size: 12px; margin-top: 10px; display: none; letter-spacing: 1px; }
+  .complete-screen { text-align: center; padding: 40px 20px; display: none; max-width: 700px; width: 100%; }
+  .egg { font-size: 80px; margin-bottom: 20px; display: block; animation: bounce 1s ease-in-out infinite; }
+  @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-16px)} }
+  .complete-screen h2 { color: #00ff64; font-size: 26px; margin-bottom: 16px; letter-spacing: 2px; }
+  .complete-screen p { color: #aaa; font-size: 15px; line-height: 1.8; }
+  .highlight { color: #00ff64; font-weight: bold; }
+  .blink { animation: blink 1.3s step-end infinite; }
+  @keyframes blink { 50%{opacity:0} }
+  .start-btn { font-size: 15px; padding: 13px 28px; margin-top: 4px; }
 </style>
-
 </head>
 <body>
 <div class="scanline"></div>
@@ -138,6 +101,14 @@ max-width: 700px; width: 100%;
     <span class="badge">INNLEDNING</span>
     <span class="post-title">OPPDRAGET</span>
   </div>
+  <svg class="post-illustration" width="120" height="120" viewBox="0 0 120 120">
+    <circle cx="60" cy="60" r="50" fill="none" stroke="#00ff6433" stroke-width="1"/>
+    <circle cx="60" cy="60" r="40" fill="none" stroke="#00ff6455" stroke-width="1" stroke-dasharray="4 3"/>
+    <circle cx="60" cy="60" r="6" fill="#00ff64"/>
+    <line x1="60" y1="60" x2="88" y2="38" stroke="#00ff64" stroke-width="2"/>
+    <line x1="60" y1="60" x2="42" y2="72" stroke="#00ff6488" stroke-width="1.5"/>
+    <text x="60" y="115" text-anchor="middle" fill="#00ff6466" font-size="9" font-family="monospace" letter-spacing="2">OLSEN</text>
+  </svg>
   <div class="briefing">
     Agent,<br><br>
     Du har blitt rekruttert av den hemmelige spiongruppen OLSEN. For 22 år siden lånte en mystisk tysk gjest — <strong style="color:#00ff64">Herr Weinbach</strong> — en hytte på denne øya. Han var ikke hvem som helst. Han kjente hver stein, hver krok og hvert hjørne av dette stedet — og før han dro, gjemte han noe. Noe verdifullt.<br><br>
@@ -153,87 +124,158 @@ max-width: 700px; width: 100%;
 <div class="complete-screen" id="completeScreen">
   <span class="egg">🥚</span>
   <h2>OPPDRAGET FULLFØRT!</h2>
-  <p>
-    Utrolig innsats, agent.<br><br>
-    Du har fulgt Herr Weinbachs ledetråder helt til mål.<br>
-    Spiongruppen OLSEN er stolt av deg.<br><br>
-    <span class="highlight">Finn rommet der kraften kommer inn i hytten.<br>
-    Se deg rundt — noe henger fritt på veggen.<br>
-    Der venter det Weinbach gjemte. 🍬</span>
-  </p>
-  <div class="transmission blink" style="margin-top:36px">// OVERFØRING AVSLUTTET — WEINBACH UT //</div>
+  <p>Utrolig innsats, agent.<br><br>
+  Du har fulgt Herr Weinbachs ledetråder helt til mål.<br>
+  Spiongruppen OLSEN er stolt av deg.<br><br>
+  <span class="highlight">Finn rommet der kraften kommer inn i hytten.<br>
+  Se deg rundt — noe henger fritt på veggen.<br>
+  Der venter det Weinbach gjemte. 🍬</span></p>
+  <div style="font-size:11px;color:#00ff6444;letter-spacing:3px;margin-top:36px" class="blink">// OVERFØRING AVSLUTTET — WEINBACH UT //</div>
 </div>
 
 <script>
-// Tire image as data URI placeholder — replace src with actual blurred image if desired
-const TIRE_IMG = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='400' height='300' fill='%23111'/%3E%3Ccircle cx='200' cy='150' r='110' fill='none' stroke='%23333' stroke-width='40'/%3E%3Ccircle cx='200' cy='150' r='60' fill='%23222'/%3E%3Ctext x='200' y='158' text-anchor='middle' fill='%23444' font-size='14' font-family='monospace'%3E??? mm%3C/text%3E%3C/svg%3E";
+const svgs = [
+  // Post 1 — Barometer
+  `<svg class="post-illustration" width="110" height="110" viewBox="0 0 110 110">
+    <circle cx="55" cy="60" r="42" fill="none" stroke="#00ff6444" stroke-width="1.5"/>
+    <circle cx="55" cy="60" r="34" fill="#060f07" stroke="#00ff6433" stroke-width="1"/>
+    <path d="M24 78 A34 34 0 0 1 86 78" fill="none" stroke="#00ff6466" stroke-width="1" stroke-dasharray="2 2"/>
+    <line x1="55" y1="60" x2="72" y2="34" stroke="#00ff64" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="55" cy="60" r="4" fill="#00ff64"/>
+    <text x="30" y="82" fill="#00ff6466" font-size="7" font-family="monospace">LOW</text>
+    <text x="72" y="82" fill="#00ff6466" font-size="7" font-family="monospace">HIGH</text>
+    <text x="55" y="18" text-anchor="middle" fill="#00ff6455" font-size="8" font-family="monospace" letter-spacing="1">TRYKK</text>
+  </svg>`,
+  // Post 2 — Båt i båthus
+  `<svg class="post-illustration" width="140" height="90" viewBox="0 0 140 90">
+    <rect x="0" y="0" width="140" height="90" fill="#060f07" rx="2"/>
+    <rect x="10" y="10" width="120" height="55" fill="none" stroke="#00ff6422" stroke-width="1" stroke-dasharray="3 2"/>
+    <polygon points="25,65 115,65 105,75 35,75" fill="#00ff6433" stroke="#00ff6466" stroke-width="1"/>
+    <rect x="50" y="52" width="40" height="13" fill="#00ff6422" stroke="#00ff6444" stroke-width="1"/>
+    <rect x="110" y="55" width="8" height="18" fill="#00ff6444" rx="1"/>
+    <line x1="0" y1="75" x2="140" y2="75" stroke="#00ff6433" stroke-width="1"/>
+    <rect x="5" y="10" width="6" height="65" fill="#00ff6422" stroke="#00ff6433" stroke-width="1"/>
+    <rect x="129" y="10" width="6" height="65" fill="#00ff6422" stroke="#00ff6433" stroke-width="1"/>
+    <text x="70" y="88" text-anchor="middle" fill="#00ff6444" font-size="7" font-family="monospace" letter-spacing="1">BÅTHUSET</text>
+  </svg>`,
+  // Post 3 — Bygning med apparat
+  `<svg class="post-illustration" width="130" height="100" viewBox="0 0 130 100">
+    <rect x="15" y="30" width="80" height="60" fill="#060f07" stroke="#00ff6444" stroke-width="1.5"/>
+    <polygon points="15,30 55,5 95,30" fill="none" stroke="#00ff6455" stroke-width="1.5"/>
+    <rect x="35" y="55" width="15" height="20" fill="#00ff6422" stroke="#00ff6433" stroke-width="1"/>
+    <rect x="60" y="55" width="15" height="20" fill="#00ff6422" stroke="#00ff6433" stroke-width="1"/>
+    <rect x="98" y="48" width="18" height="18" fill="#0a1a0c" stroke="#00ff6466" stroke-width="1.5" rx="2"/>
+    <circle cx="107" cy="57" r="5" fill="none" stroke="#00ff64" stroke-width="1.5"/>
+    <circle cx="107" cy="57" r="2" fill="#00ff6444"/>
+    <line x1="95" y1="57" x2="98" y2="57" stroke="#00ff6444" stroke-width="1"/>
+  </svg>`,
+  // Post 4 — Lite apparat ovenfra
+  `<svg class="post-illustration" width="100" height="100" viewBox="0 0 100 100">
+    <rect x="20" y="20" width="60" height="60" rx="8" fill="#060f07" stroke="#00ff6455" stroke-width="1.5"/>
+    <rect x="28" y="35" width="44" height="28" rx="3" fill="#0a1a0c" stroke="#00ff6433" stroke-width="1"/>
+    <line x1="35" y1="42" x2="35" y2="56" stroke="#00ff6444" stroke-width="2"/>
+    <line x1="42" y1="42" x2="42" y2="56" stroke="#00ff6444" stroke-width="2"/>
+    <line x1="49" y1="42" x2="49" y2="56" stroke="#00ff6444" stroke-width="2"/>
+    <line x1="56" y1="42" x2="56" y2="56" stroke="#00ff6444" stroke-width="2"/>
+    <line x1="63" y1="42" x2="63" y2="56" stroke="#00ff6444" stroke-width="2"/>
+    <circle cx="36" cy="28" r="4" fill="none" stroke="#00ff6466" stroke-width="1.5"/>
+    <circle cx="64" cy="28" r="4" fill="none" stroke="#00ff6466" stroke-width="1.5"/>
+    <circle cx="50" cy="28" r="2" fill="#ff4444" opacity="0.7"/>
+    <text x="50" y="93" text-anchor="middle" fill="#00ff6444" font-size="7" font-family="monospace">? WATT</text>
+  </svg>`,
+  // Post 5 — Mystisk dekk
+  `<svg class="post-illustration" width="120" height="120" viewBox="0 0 120 120">
+    <circle cx="60" cy="60" r="48" fill="#060f07" stroke="#00ff6444" stroke-width="8"/>
+    <circle cx="60" cy="60" r="26" fill="#0a1a0c" stroke="#00ff6433" stroke-width="2"/>
+    <circle cx="60" cy="60" r="10" fill="#060f07" stroke="#00ff6466" stroke-width="1.5"/>
+    <circle cx="60" cy="60" r="3" fill="#00ff6444"/>
+    <text x="60" y="115" text-anchor="middle" fill="#00ff6444" font-size="8" font-family="monospace" letter-spacing="1">??? mm</text>
+    <text x="60" y="8" text-anchor="middle" fill="#00ff6433" font-size="7" font-family="monospace">KLASSIFISERT</text>
+  </svg>`,
+  // Post 6 — Trafokiosk med advarsel
+  `<svg class="post-illustration" width="110" height="110" viewBox="0 0 110 110">
+    <rect x="25" y="25" width="60" height="70" fill="#060f07" stroke="#00ff6444" stroke-width="1.5" rx="2"/>
+    <polygon points="55,32 70,55 40,55" fill="none" stroke="#ffcc00" stroke-width="1.5"/>
+    <line x1="55" y1="37" x2="55" y2="48" stroke="#ffcc00" stroke-width="1.5"/>
+    <circle cx="55" cy="52" r="1.5" fill="#ffcc00"/>
+    <rect x="35" y="62" width="40" height="18" rx="2" fill="#111" stroke="#00ff6433" stroke-width="1"/>
+    <text x="55" y="75" text-anchor="middle" fill="#00ff64" font-size="9" font-family="monospace" letter-spacing="1">91017</text>
+    <line x1="0" y1="95" x2="110" y2="95" stroke="#00ff6422" stroke-width="1"/>
+  </svg>`,
+  // Post 7 — Gammel kasse med kuler
+  `<svg class="post-illustration" width="130" height="90" viewBox="0 0 130 90">
+    <rect x="10" y="30" width="110" height="55" fill="#060f07" stroke="#00ff6444" stroke-width="1.5" rx="2"/>
+    <line x1="10" y1="50" x2="120" y2="50" stroke="#00ff6433" stroke-width="1"/>
+    <line x1="10" y1="65" x2="120" y2="65" stroke="#00ff6433" stroke-width="1"/>
+    <line x1="43" y1="30" x2="43" y2="85" stroke="#00ff6433" stroke-width="1"/>
+    <line x1="87" y1="30" x2="87" y2="85" stroke="#00ff6433" stroke-width="1"/>
+    <circle cx="35" cy="20" r="10" fill="none" stroke="#00ff6455" stroke-width="1.5"/>
+    <circle cx="65" cy="18" r="12" fill="none" stroke="#00ff6466" stroke-width="1.5"/>
+    <circle cx="95" cy="21" r="9" fill="none" stroke="#00ff6444" stroke-width="1.5"/>
+    <line x1="27" y1="28" x2="32" y2="30" stroke="#00ff6433" stroke-width="1"/>
+    <line x1="65" y1="30" x2="65" y2="30" stroke="#00ff6433" stroke-width="1"/>
+    <line x1="100" y1="29" x2="104" y2="30" stroke="#00ff6433" stroke-width="1"/>
+    <text x="65" y="45" text-anchor="middle" fill="#00ff6444" font-size="8" font-family="monospace" letter-spacing="2">TOU</text>
+  </svg>`,
+  // Post 8 — Skjevt skilt
+  `<svg class="post-illustration" width="120" height="110" viewBox="0 0 120 110">
+    <line x1="60" y1="100" x2="58" y2="20" stroke="#00ff6455" stroke-width="3"/>
+    <g transform="rotate(-18, 60, 45)">
+      <rect x="20" y="28" width="80" height="22" rx="2" fill="#060f07" stroke="#00ff6466" stroke-width="1.5"/>
+      <polygon points="100,28 110,39 100,50" fill="#060f07" stroke="#00ff6466" stroke-width="1.5"/>
+      <text x="57" y="43" text-anchor="middle" fill="#00ff64" font-size="9" font-family="monospace">131-143</text>
+    </g>
+    <g transform="rotate(12, 60, 68)">
+      <rect x="20" y="55" width="80" height="22" rx="2" fill="#060f07" stroke="#00ff6433" stroke-width="1"/>
+      <polygon points="20,55 10,66 20,77" fill="#060f07" stroke="#00ff6433" stroke-width="1"/>
+    </g>
+  </svg>`,
+  // Post 9 — Mørkt rom, svakt lys
+  `<svg class="post-illustration" width="120" height="100" viewBox="0 0 120 100">
+    <rect x="0" y="0" width="120" height="100" fill="#060f07" rx="3"/>
+    <rect x="10" y="10" width="100" height="80" fill="none" stroke="#00ff6422" stroke-width="1" stroke-dasharray="3 3"/>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00ff6433"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+    <ellipse cx="60" cy="50" rx="30" ry="25" fill="url(#glow)"/>
+    <rect x="48" y="35" width="24" height="30" rx="2" fill="#0a1a0c" stroke="#00ff6455" stroke-width="1.5"/>
+    <line x1="53" y1="42" x2="67" y2="42" stroke="#00ff6433" stroke-width="1"/>
+    <line x1="53" y1="47" x2="67" y2="47" stroke="#00ff6433" stroke-width="1"/>
+    <line x1="53" y1="52" x2="67" y2="52" stroke="#00ff6433" stroke-width="1"/>
+    <line x1="53" y1="57" x2="67" y2="57" stroke="#00ff6433" stroke-width="1"/>
+    <text x="60" y="93" text-anchor="middle" fill="#00ff6433" font-size="7" font-family="monospace" letter-spacing="1">HJERTET SLÅR HER</text>
+  </svg>`
+];
 
 const posts = [
-  {
-    id: 1,
-    title: "POST 1 — DET FØRSTE SPORET",
-    code: "1080",
-    briefing: "Weinbach fulgte alltid været nøye. Han sa at en god agent aldri blir tatt på senga av en storm. Det første sporet han la igjen henger på veggen — et instrument som ikke lyver. Det trenger ikke batteri. Det trenger ikke internett. Det bare viser.",
-    hint: "🌡️ Finn instrumentet på veggen. Se på tallskalaen. Koden er den høyeste verdien du kan lese av — oppgitt i millibar."
-  },
-  {
-    id: 2,
-    title: "POST 2 — BÅTHUSET",
-    code: "25",
-    briefing: "Weinbach var glad i havet. Han sa at det eneste som er raskere enn rykter på ei øy, er en liten båt med god motor. Det gamle båthuset her har stått i generasjoner — og da Weinbach besøkte øya, la han merke til en liten, gul og kvikk en som lå gjemt der inne. Rask som et krypdyr fra tropene, sa han.",
-    hint: "⚓ Finn det slitne båthuset. Inne ligger en liten gul båt. Se på motoren bak. Koden finner du der kraften måles."
-  },
-  {
-    id: 3,
-    title: "POST 3 — BYGDEHUSET",
-    code: "17",
-    briefing: "Weinbach kjente fort igjen et sted der hemmeligheter ble hvisket. Han besøkte Bygdehuset flere ganger under oppholdet sitt — og la igjen et spor der. Sporet er knyttet til noe som henger på utsiden av bygget. Weinbach la merke til det lenge før noen andre gjorde det.",
-    hint: "🏢 Gå til Bygdehuset. Se etter apparatet som henger på utsiden av veggen og varmer bygget. Det er merket med et japansk selskap. Tell bokstavene i hele navnet — begge ord. Det er koden."
-  },
-  {
-    id: 4,
-    title: "POST 4 — HYTTEKJØKKENET",
-    code: "2000",
-    briefing: "Weinbach kom alltid inn fra kulda og sa det samme: 'Warme ist der beste Freund eines Agenten' — varme er en agents beste venn. På kjøkkenet i hytten la han merke til et lite hvitt apparat med et gitter foran og to knapper på toppen. Han undersøkte det grundig — slik han alltid gjorde med ting han ikke kjente.",
-    hint: "🔌 Finn det lille hvite apparatet på hyttekjøkkenet — gitter foran, to knapper på toppen. Snu det opp ned. Les av antall watt. Det er koden."
-  },
-  {
-    id: 5,
-    title: "POST 5 — KJØRETØYET",
-    code: "255",
-    briefing: "Weinbach beveget seg alltid lydløst. Han likte kjøretøy som ikke røpet ham. Et slikt kjøretøy er parkert i nærheten nå. Det lager ingen lyd. Det etterlater ikke røyk. Men det etterlater spor — fire av dem, mot bakken.",
-    hint: "🔍 Studer bildet nedenfor. Finn dette dekket i virkeligheten. Svaret gjemmer seg i dekkstørrelsen — det første tresifrede tallet er koden.",
-    tireImage: true
-  },
-  {
-    id: 6,
-    title: "POST 6 — TRAFOKIOSKEN",
-    code: "91017",
-    briefing: "Weinbach visste at makt ikke alltid ser imponerende ut. En dag under oppholdet sitt vandret han ut i et veikryss på øya. Der sto et grått, uanselig bygg — lydløst, men kraftfullt. Han sto lenge og studerte det. Ingen forstod hvorfor. Men han visste.",
-    hint: "⚡ Finn det grå metallbygget i veikrysset. Kom ikke for nær — det er farlig. Men se på siden. Et svart skilt med hvite tall forteller deg det du trenger å vite."
-  },
-  {
-    id: 7,
-    title: "POST 7 — DEN GAMLE KASSEN",
-    code: "STAVANGER",
-    briefing: "Weinbach hadde sans for det gamle. Han samlet på ting med historie — ting som hadde reist langt og sett mye. Under oppholdet sitt oppdaget han en gammel trekasse fra et bryggeri med lang historie på Vestlandet. Den var fylt med runde gjenstander fra havet, fanget i nett av tau. Han sa at kassen visste mer enn den fortalte.",
-    hint: "🍺 Finn den gamle bryggerikassen fra Tou — fylt med glasskuler i nett. På kassen står det et bynavn. Det bynavnet er koden. Skriv det med store bokstaver."
-  },
-  {
-    id: 8,
-    title: "POST 8 — VEISKILTET",
-    code: "131",
-    briefing: "Weinbach lo alltid av dette skiltet. 'Es zeigt in die falsche Richtung,' sa han — det peker i feil retning. Men han la alltid til: 'Tallene lyver aldri.' Han mente det var et godt bilde på livet — ikke alltid rett retning, men alltid rett svar hvis du ser nøye nok.",
-    hint: "🪧 Finn veiskiltet som peker mot hytta — men i feil retning. Øverst på skiltet står to tall med bindestrek mellom. Det første tresifrede tallet er koden."
-  },
-  {
-    id: 9,
-    title: "POST 9 — SLUTTEN",
-    code: null,
-    briefing: "Du er nesten fremme, agent. Weinbach gjemte alltid det viktigste der ingen tenker å lete — men der alle burde vite om. Et rom der alt starter. Der kraften kommer inn. Der hjertet til hytten slår stille, skjult for alle som ikke vet hva de leter etter. Weinbach visste. Nå vet du.",
-    hint: "🔦 Finn rommet der kraften kommer inn i hytten. Se deg rundt — noe henger fritt på veggen. Der, i nærheten, venter det Weinbach gjemte.",
-    final: true
-  }
+  { id:1, title:"POST 1 — DET FØRSTE SPORET", code:"1080",
+    briefing:"Weinbach fulgte alltid været nøye. Han sa at en god agent aldri blir tatt på senga av en storm. Det første sporet han la igjen henger på veggen — et instrument som ikke lyver. Det trenger ikke batteri. Det trenger ikke internett. Det bare viser.",
+    hint:"🌡️ Finn instrumentet på veggen. Se på tallskalaen. Koden er den høyeste verdien du kan lese av — oppgitt i millibar." },
+  { id:2, title:"POST 2 — BÅTHUSET", code:"25",
+    briefing:"Weinbach var glad i havet. Han sa at det eneste som er raskere enn rykter på ei øy, er en liten båt med god motor. Det gamle båthuset her har stått i generasjoner — og da Weinbach besøkte øya, la han merke til en liten, gul og kvikk en som lå gjemt der inne. Rask som et krypdyr fra tropene, sa han.",
+    hint:"⚓ Finn det slitne båthuset. Inne ligger en liten gul båt. Se på motoren bak. Koden finner du der kraften måles." },
+  { id:3, title:"POST 3 — BYGDEHUSET", code:"17",
+    briefing:"Weinbach kjente fort igjen et sted der hemmeligheter ble hvisket. Han besøkte Bygdehuset flere ganger under oppholdet sitt — og la igjen et spor der. Sporet er knyttet til noe som henger på utsiden av bygget. Weinbach la merke til det lenge før noen andre gjorde det.",
+    hint:"🏢 Gå til Bygdehuset. Se etter apparatet som henger på utsiden av veggen og varmer bygget. Det er merket med et japansk selskap. Tell bokstavene i hele navnet — begge ord. Det er koden." },
+  { id:4, title:"POST 4 — HYTTEKJØKKENET", code:"2000",
+    briefing:"Weinbach kom alltid inn fra kulda og sa det samme: 'Warme ist der beste Freund eines Agenten' — varme er en agents beste venn. På kjøkkenet i hytten la han merke til et lite hvitt apparat med et gitter foran og to knapper på toppen. Han undersøkte det grundig — slik han alltid gjorde med ting han ikke kjente.",
+    hint:"🔌 Finn det lille hvite apparatet på hyttekjøkkenet — gitter foran, to knapper på toppen. Snu det opp ned. Les av antall watt. Det er koden." },
+  { id:5, title:"POST 5 — KJØRETØYET", code:"255",
+    briefing:"Weinbach beveget seg alltid lydløst. Han likte kjøretøy som ikke røpet ham. Et slikt kjøretøy er parkert i nærheten nå. Det lager ingen lyd. Det etterlater ikke røyk. Men det etterlater spor — fire av dem, mot bakken.",
+    hint:"🔍 Studer bildet nedenfor. Finn dette dekket i virkeligheten. Svaret gjemmer seg i dekkstørrelsen — det første tresifrede tallet er koden." },
+  { id:6, title:"POST 6 — TRAFOKIOSKEN", code:"91017",
+    briefing:"Weinbach visste at makt ikke alltid ser imponerende ut. En dag under oppholdet sitt vandret han ut i et veikryss på øya. Der sto et grått, uanselig bygg — lydløst, men kraftfullt. Han sto lenge og studerte det. Ingen forstod hvorfor. Men han visste.",
+    hint:"⚡ Finn det grå metallbygget i veikrysset. Kom ikke for nær — det er farlig. Men se på siden. Et svart skilt med hvite tall forteller deg det du trenger å vite." },
+  { id:7, title:"POST 7 — DEN GAMLE KASSEN", code:"STAVANGER",
+    briefing:"Weinbach hadde sans for det gamle. Han samlet på ting med historie — ting som hadde reist langt og sett mye. Under oppholdet sitt oppdaget han en gammel trekasse fra et bryggeri med lang historie på Vestlandet. Den var fylt med runde gjenstander fra havet, fanget i nett av tau. Han sa at kassen visste mer enn den fortalte.",
+    hint:"🍺 Finn den gamle bryggerikassen fra Tou — fylt med glasskuler i nett. På kassen står det et bynavn. Det bynavnet er koden. Skriv det med store bokstaver." },
+  { id:8, title:"POST 8 — VEISKILTET", code:"131",
+    briefing:"Weinbach lo alltid av dette skiltet. 'Es zeigt in die falsche Richtung,' sa han — det peker i feil retning. Men han la alltid til: 'Tallene lyver aldri.' Han mente det var et godt bilde på livet — ikke alltid rett retning, men alltid rett svar hvis du ser nøye nok.",
+    hint:"🪧 Finn veiskiltet som peker mot hytta — men i feil retning. Øverst på skiltet står to tall med bindestrek mellom. Det første tresifrede tallet er koden." },
+  { id:9, title:"POST 9 — SLUTTEN", code:null, final:true,
+    briefing:"Du er nesten fremme, agent. Weinbach gjemte alltid det viktigste der ingen tenker å lete — men der alle burde vite om. Et rom der alt starter. Der kraften kommer inn. Der hjertet til hytten slår stille, skjult for alle som ikke vet hva de leter etter. Weinbach visste. Nå vet du.",
+    hint:"🔦 Finn rommet der kraften kommer inn i hytten. Se deg rundt — noe henger fritt på veggen. Der, i nærheten, venter det Weinbach gjemte." }
 ];
 
 let current = 0;
@@ -246,9 +288,7 @@ function startMission() {
 function renderPosts() {
   const c = document.getElementById('postsContainer');
   c.innerHTML = '';
-  for (let i = 0; i <= current && i < posts.length; i++) {
-    c.appendChild(buildCard(i));
-  }
+  for (let i = 0; i <= current && i < posts.length; i++) c.appendChild(buildCard(i));
   updateProgress();
   setTimeout(() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }), 120);
 }
@@ -265,13 +305,10 @@ function buildCard(idx) {
       <span class="post-title">${p.title}</span>
       ${solved ? '<span class="solved-mark">✔ LØST</span>' : ''}
     </div>
-    <div class="briefing">${p.briefing}</div>
-  `;
+    ${svgs[idx]}
+    <div class="briefing">${p.briefing}</div>`;
 
   if (!solved) {
-    if (p.tireImage) {
-      inner += `<img class="tire-img" src="${TIRE_IMG}" alt="Mystisk dekk">`;
-    }
     if (p.final) {
       inner += `<div class="hint-box"><strong>SISTE LEDETRÅD:</strong><br>${p.hint}</div>
         <button onclick="showComplete()">🥚 OPPDRAG FULLFØRT</button>`;
@@ -282,8 +319,7 @@ function buildCard(idx) {
           <input type="text" id="inp-${idx}" placeholder="TAST INN KODE" onkeydown="if(event.key==='Enter')check(${idx})">
           <button onclick="check(${idx})">BEKREFT ▶</button>
         </div>
-        <div class="error" id="err-${idx}">⚠ FEIL KODE — WEINBACH GODTAR IKKE DETTE</div>
-      `;
+        <div class="error" id="err-${idx}">⚠ FEIL KODE — WEINBACH GODTAR IKKE DETTE</div>`;
     }
   }
 
@@ -296,9 +332,7 @@ function check(idx) {
   const inp = document.getElementById('inp-' + idx);
   const err = document.getElementById('err-' + idx);
   const val = inp.value.trim().toUpperCase();
-  const correct = String(p.code).toUpperCase();
-
-  if (val === correct) {
+  if (val === String(p.code).toUpperCase()) {
     current = idx + 1;
     err.style.display = 'none';
     renderPosts();
@@ -314,14 +348,12 @@ function check(idx) {
 function showComplete() {
   document.getElementById('postsContainer').style.display = 'none';
   document.getElementById('progressFill').style.width = '100%';
-  const cs = document.getElementById('completeScreen');
-  cs.style.display = 'block';
+  document.getElementById('completeScreen').style.display = 'block';
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function updateProgress() {
-  const pct = (current / posts.length) * 100;
-  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressFill').style.width = (current / posts.length * 100) + '%';
 }
 </script>
 
