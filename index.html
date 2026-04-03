@@ -72,6 +72,40 @@
   }
   button:hover { background: #00cc50; box-shadow: 0 0 12px #00ff6466; }
   .error { color: #ff4444; font-size: 12px; margin-top: 10px; display: none; letter-spacing: 1px; }
+  @keyframes unlockFlash {
+    0%   { background: #0b150d; box-shadow: 0 0 24px #00ff6408; transform: scale(1); }
+    10%  { background: #004d22; box-shadow: 0 0 80px #00ff64cc; transform: scale(1.02); }
+    25%  { background: #003318; box-shadow: 0 0 120px #00ff6499; transform: scale(1.015); }
+    50%  { background: #002211; box-shadow: 0 0 80px #00ff6466; transform: scale(1.01); }
+    75%  { background: #001a0d; box-shadow: 0 0 40px #00ff6433; transform: scale(1.005); }
+    100% { background: #0b150d; box-shadow: 0 0 24px #00ff6408; transform: scale(1); }
+  }
+  .unlock-anim { animation: unlockFlash 1.8s ease-out; }
+  @keyframes accessGranted {
+    0%   { opacity: 0; transform: scale(0.8); }
+    20%  { opacity: 1; transform: scale(1.1); }
+    80%  { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(1); }
+  }
+  .access-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    pointer-events: none; z-index: 1000;
+  }
+  .access-text {
+    font-family: 'Courier New', monospace;
+    font-size: clamp(28px, 8vw, 52px);
+    font-weight: bold;
+    color: #00ff64;
+    text-shadow: 0 0 40px #00ff64, 0 0 80px #00ff6488;
+    letter-spacing: 6px;
+    animation: accessGranted 1.8s ease-out forwards;
+  }
+  @keyframes solvedPulse {
+    0%,100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+  .solved-mark { color: #00ff64; margin-left: auto; font-size: 14px; animation: solvedPulse 1.5s ease-in-out 3; }
   .complete-screen { text-align: center; padding: 40px 20px; display: none; max-width: 700px; width: 100%; }
   .egg { font-size: 80px; margin-bottom: 20px; display: block; animation: bounce 1s ease-in-out infinite; }
   @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-16px)} }
@@ -290,7 +324,7 @@ function renderPosts() {
   c.innerHTML = '';
   for (let i = 0; i <= current && i < posts.length; i++) c.appendChild(buildCard(i));
   updateProgress();
-  setTimeout(() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }), 120);
+  // scroll handled by check() after render
 }
 
 function buildCard(idx) {
@@ -327,6 +361,45 @@ function buildCard(idx) {
   return div;
 }
 
+function playUnlockSound() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const t = ctx.currentTime;
+    // Rising beep sequence
+    [220, 330, 440, 660, 880].forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain); gain.connect(ctx.destination);
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, t + i * 0.1);
+      gain.gain.setValueAtTime(0, t + i * 0.1);
+      gain.gain.linearRampToValueAtTime(0.18, t + i * 0.1 + 0.04);
+      gain.gain.linearRampToValueAtTime(0, t + i * 0.1 + 0.18);
+      osc.start(t + i * 0.1);
+      osc.stop(t + i * 0.1 + 0.2);
+    });
+    // Final sustain tone
+    const osc2 = ctx.createOscillator();
+    const gain2 = ctx.createGain();
+    osc2.connect(gain2); gain2.connect(ctx.destination);
+    osc2.type = 'sine';
+    osc2.frequency.setValueAtTime(880, t + 0.55);
+    osc2.frequency.linearRampToValueAtTime(1100, t + 1.2);
+    gain2.gain.setValueAtTime(0.15, t + 0.55);
+    gain2.gain.linearRampToValueAtTime(0, t + 1.4);
+    osc2.start(t + 0.55);
+    osc2.stop(t + 1.5);
+  } catch(e) {}
+}
+
+function showAccessOverlay() {
+  const overlay = document.createElement('div');
+  overlay.className = 'access-overlay';
+  overlay.innerHTML = '<div class="access-text">ACCESS GRANTED</div>';
+  document.body.appendChild(overlay);
+  setTimeout(() => overlay.remove(), 1900);
+}
+
 function check(idx) {
   const p = posts[idx];
   const inp = document.getElementById('inp-' + idx);
@@ -335,7 +408,23 @@ function check(idx) {
   if (val === String(p.code).toUpperCase()) {
     current = idx + 1;
     err.style.display = 'none';
-    renderPosts();
+    playUnlockSound();
+    showAccessOverlay();
+    // Flash the current card before rendering next
+    const card = inp.closest('.card');
+    card.classList.add('unlock-anim');
+    setTimeout(() => {
+      renderPosts();
+      // Scroll so the new card is near top with some padding
+      setTimeout(() => {
+        const cards = document.querySelectorAll('.card');
+        const newCard = cards[cards.length - 1];
+        if (newCard) {
+          const top = newCard.getBoundingClientRect().top + window.scrollY - 80;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      }, 80);
+    }, 1400);
   } else {
     err.style.display = 'block';
     inp.value = '';
