@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Operasjon: PÅSKEEGG</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0a0a0f;
+    color: #e0e0e0;
+    font-family: 'Courier New', monospace;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 16px 60px;
+  }
+  .scanline {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,255,100,0.012) 2px, rgba(0,255,100,0.012) 4px);
+    pointer-events: none; z-index: 999;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #00ff6455;
+    padding-bottom: 20px;
+    width: 100%;
+    max-width: 700px;
+  }
+  .logo { font-size: 11px; color: #00ff6488; letter-spacing: 4px; margin-bottom: 8px; }
+  h1 { font-size: clamp(20px, 5vw, 34px); color: #00ff64; text-shadow: 0 0 20px #00ff6466; letter-spacing: 3px; }
+  .subtitle { font-size: 11px; color: #666; margin-top: 6px; letter-spacing: 2px; }
+
+.progress-bar {
+width: 100%; max-width: 700px;
+background: #111; border: 1px solid #00ff6422;
+border-radius: 2px; height: 5px; margin-bottom: 28px; overflow: hidden;
+}
+.progress-fill { height: 100%; background: #00ff64; transition: width 0.7s ease; box-shadow: 0 0 8px #00ff64; }
+
+.card {
+background: #0b150d;
+border: 1px solid #00ff6428;
+border-radius: 3px;
+padding: 24px 22px;
+max-width: 700px;
+width: 100%;
+margin-bottom: 18px;
+box-shadow: 0 0 24px #00ff6408;
+}
+.post-header {
+display: flex; align-items: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap;
+}
+.badge {
+background: #00ff64; color: #000; font-weight: bold;
+font-size: 11px; padding: 3px 9px; border-radius: 2px; letter-spacing: 1px; white-space: nowrap;
+}
+.post-title { font-size: 16px; color: #00ff64; letter-spacing: 1px; }
+.solved-mark { color: #00ff64; margin-left: auto; font-size: 14px; }
+
+.briefing {
+background: #060f07; border-left: 3px solid #00ff6466;
+padding: 13px 15px; margin-bottom: 18px;
+font-size: 14px; line-height: 1.75; color: #bbb;
+}
+.hint-box {
+background: #0a1a0c; border: 1px dashed #00ff6444;
+border-radius: 3px; padding: 13px 15px; margin-bottom: 18px;
+font-size: 13px; color: #999; line-height: 1.6;
+}
+.hint-box strong { color: #00ff64; }
+
+.tire-img {
+width: 100%; max-width: 340px; display: block; margin: 0 auto 16px;
+border-radius: 3px; border: 1px solid #00ff6433;
+filter: blur(2.5px) brightness(0.7) saturate(0.4);
+}
+
+.input-row { display: flex; gap: 10px; flex-wrap: wrap; }
+input[type=“text”] {
+flex: 1; min-width: 120px;
+background: #000; border: 1px solid #00ff6455;
+color: #00ff64; font-family: ‘Courier New’, monospace;
+font-size: 18px; padding: 10px 14px; border-radius: 2px;
+outline: none; letter-spacing: 3px; text-transform: uppercase;
+transition: border-color 0.3s;
+}
+input[type=“text”]:focus { border-color: #00ff64; box-shadow: 0 0 10px #00ff6433; }
+button {
+background: #00ff64; color: #000; border: none;
+font-family: ‘Courier New’, monospace; font-weight: bold;
+font-size: 13px; padding: 10px 18px; border-radius: 2px;
+cursor: pointer; letter-spacing: 1px; transition: all 0.2s;
+white-space: nowrap;
+}
+button:hover { background: #00cc50; box-shadow: 0 0 12px #00ff6466; }
+.error {
+color: #ff4444; font-size: 12px; margin-top: 10px;
+display: none; letter-spacing: 1px;
+}
+
+.complete-screen {
+text-align: center; padding: 40px 20px; display: none;
+max-width: 700px; width: 100%;
+}
+.egg { font-size: 80px; margin-bottom: 20px; display: block; animation: bounce 1s ease-in-out infinite; }
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-16px)} }
+.complete-screen h2 { color: #00ff64; font-size: 26px; margin-bottom: 16px; letter-spacing: 2px; }
+.complete-screen p { color: #aaa; font-size: 15px; line-height: 1.8; }
+.complete-screen .highlight { color: #00ff64; font-weight: bold; }
+
+.transmission { font-size: 11px; color: #00ff6444; letter-spacing: 3px; text-align: center; margin-top: 30px; }
+.blink { animation: blink 1.3s step-end infinite; }
+@keyframes blink { 50%{opacity:0} }
+
+.start-btn { font-size: 15px; padding: 13px 28px; margin-top: 4px; }
+</style>
+
+</head>
+<body>
+<div class="scanline"></div>
+
+<header>
+  <div class="logo">// KLASSIFISERT — SPIONGRUPPEN OLSEN //</div>
+  <h1>OPERASJON: PÅSKEEGG</h1>
+  <div class="subtitle">TILGANGSNIVÅ: TOPP HEMMELIG</div>
+</header>
+
+<div class="progress-bar">
+  <div class="progress-fill" id="progressFill" style="width:0%"></div>
+</div>
+
+<div id="introCard" class="card">
+  <div class="post-header">
+    <span class="badge">INNLEDNING</span>
+    <span class="post-title">OPPDRAGET</span>
+  </div>
+  <div class="briefing">
+    Agent,<br><br>
+    Du har blitt rekruttert av den hemmelige spiongruppen OLSEN. For 22 år siden lånte en mystisk tysk gjest — <strong style="color:#00ff64">Herr Weinbach</strong> — en hytte på denne øya. Han var ikke hvem som helst. Han kjente hver stein, hver krok og hvert hjørne av dette stedet — og før han dro, gjemte han noe. Noe verdifullt.<br><br>
+    Han la igjen en kjede av ledetråder. Bare den rette agenten ville klare å følge dem.<br><br>
+    Det er deg. Nå er tida inne.<br><br>
+    <em style="color:#00ff6488">Lykke til, agent. Weinbach stolte på deg.</em>
+  </div>
+  <button class="start-btn" onclick="startMission()">▶ START OPPDRAGET</button>
+</div>
+
+<div id="postsContainer"></div>
+
+<div class="complete-screen" id="completeScreen">
+  <span class="egg">🥚</span>
+  <h2>OPPDRAGET FULLFØRT!</h2>
+  <p>
+    Utrolig innsats, agent.<br><br>
+    Du har fulgt Herr Weinbachs ledetråder helt til mål.<br>
+    Spiongruppen OLSEN er stolt av deg.<br><br>
+    <span class="highlight">Finn rommet der kraften kommer inn i hytten.<br>
+    Se deg rundt — noe henger fritt på veggen.<br>
+    Der venter det Weinbach gjemte. 🍬</span>
+  </p>
+  <div class="transmission blink" style="margin-top:36px">// OVERFØRING AVSLUTTET — WEINBACH UT //</div>
+</div>
+
+<script>
+// Tire image as data URI placeholder — replace src with actual blurred image if desired
+const TIRE_IMG = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='400' height='300' fill='%23111'/%3E%3Ccircle cx='200' cy='150' r='110' fill='none' stroke='%23333' stroke-width='40'/%3E%3Ccircle cx='200' cy='150' r='60' fill='%23222'/%3E%3Ctext x='200' y='158' text-anchor='middle' fill='%23444' font-size='14' font-family='monospace'%3E??? mm%3C/text%3E%3C/svg%3E";
+
+const posts = [
+  {
+    id: 1,
+    title: "POST 1 — DET FØRSTE SPORET",
+    code: "1080",
+    briefing: "Weinbach fulgte alltid været nøye. Han sa at en god agent aldri blir tatt på senga av en storm. Det første sporet han la igjen henger på veggen — et instrument som ikke lyver. Det trenger ikke batteri. Det trenger ikke internett. Det bare viser.",
+    hint: "🌡️ Finn instrumentet på veggen. Se på tallskalaen. Koden er den høyeste verdien du kan lese av — oppgitt i millibar."
+  },
+  {
+    id: 2,
+    title: "POST 2 — BÅTHUSET",
+    code: "25",
+    briefing: "Weinbach var glad i havet. Han sa at det eneste som er raskere enn rykter på ei øy, er en liten båt med god motor. Det gamle båthuset her har stått i generasjoner — og da Weinbach besøkte øya, la han merke til en liten, gul og kvikk en som lå gjemt der inne. Rask som et krypdyr fra tropene, sa han.",
+    hint: "⚓ Finn det slitne båthuset. Inne ligger en liten gul båt. Se på motoren bak. Koden finner du der kraften måles."
+  },
+  {
+    id: 3,
+    title: "POST 3 — BYGDEHUSET",
+    code: "17",
+    briefing: "Weinbach kjente fort igjen et sted der hemmeligheter ble hvisket. Han besøkte Bygdehuset flere ganger under oppholdet sitt — og la igjen et spor der. Sporet er knyttet til noe som henger på utsiden av bygget. Weinbach la merke til det lenge før noen andre gjorde det.",
+    hint: "🏢 Gå til Bygdehuset. Se etter apparatet som henger på utsiden av veggen og varmer bygget. Det er merket med et japansk selskap. Tell bokstavene i hele navnet — begge ord. Det er koden."
+  },
+  {
+    id: 4,
+    title: "POST 4 — HYTTEKJØKKENET",
+    code: "2000",
+    briefing: "Weinbach kom alltid inn fra kulda og sa det samme: 'Warme ist der beste Freund eines Agenten' — varme er en agents beste venn. På kjøkkenet i hytten la han merke til et lite hvitt apparat med et gitter foran og to knapper på toppen. Han undersøkte det grundig — slik han alltid gjorde med ting han ikke kjente.",
+    hint: "🔌 Finn det lille hvite apparatet på hyttekjøkkenet — gitter foran, to knapper på toppen. Snu det opp ned. Les av antall watt. Det er koden."
+  },
+  {
+    id: 5,
+    title: "POST 5 — KJØRETØYET",
+    code: "255",
+    briefing: "Weinbach beveget seg alltid lydløst. Han likte kjøretøy som ikke røpet ham. Et slikt kjøretøy er parkert i nærheten nå. Det lager ingen lyd. Det etterlater ikke røyk. Men det etterlater spor — fire av dem, mot bakken.",
+    hint: "🔍 Studer bildet nedenfor. Finn dette dekket i virkeligheten. Svaret gjemmer seg i dekkstørrelsen — det første tresifrede tallet er koden.",
+    tireImage: true
+  },
+  {
+    id: 6,
+    title: "POST 6 — TRAFOKIOSKEN",
+    code: "91017",
+    briefing: "Weinbach visste at makt ikke alltid ser imponerende ut. En dag under oppholdet sitt vandret han ut i et veikryss på øya. Der sto et grått, uanselig bygg — lydløst, men kraftfullt. Han sto lenge og studerte det. Ingen forstod hvorfor. Men han visste.",
+    hint: "⚡ Finn det grå metallbygget i veikrysset. Kom ikke for nær — det er farlig. Men se på siden. Et svart skilt med hvite tall forteller deg det du trenger å vite."
+  },
+  {
+    id: 7,
+    title: "POST 7 — DEN GAMLE KASSEN",
+    code: "STAVANGER",
+    briefing: "Weinbach hadde sans for det gamle. Han samlet på ting med historie — ting som hadde reist langt og sett mye. Under oppholdet sitt oppdaget han en gammel trekasse fra et bryggeri med lang historie på Vestlandet. Den var fylt med runde gjenstander fra havet, fanget i nett av tau. Han sa at kassen visste mer enn den fortalte.",
+    hint: "🍺 Finn den gamle bryggerikassen fra Tou — fylt med glasskuler i nett. På kassen står det et bynavn. Det bynavnet er koden. Skriv det med store bokstaver."
+  },
+  {
+    id: 8,
+    title: "POST 8 — VEISKILTET",
+    code: "131",
+    briefing: "Weinbach lo alltid av dette skiltet. 'Es zeigt in die falsche Richtung,' sa han — det peker i feil retning. Men han la alltid til: 'Tallene lyver aldri.' Han mente det var et godt bilde på livet — ikke alltid rett retning, men alltid rett svar hvis du ser nøye nok.",
+    hint: "🪧 Finn veiskiltet som peker mot hytta — men i feil retning. Øverst på skiltet står to tall med bindestrek mellom. Det første tresifrede tallet er koden."
+  },
+  {
+    id: 9,
+    title: "POST 9 — SLUTTEN",
+    code: null,
+    briefing: "Du er nesten fremme, agent. Weinbach gjemte alltid det viktigste der ingen tenker å lete — men der alle burde vite om. Et rom der alt starter. Der kraften kommer inn. Der hjertet til hytten slår stille, skjult for alle som ikke vet hva de leter etter. Weinbach visste. Nå vet du.",
+    hint: "🔦 Finn rommet der kraften kommer inn i hytten. Se deg rundt — noe henger fritt på veggen. Der, i nærheten, venter det Weinbach gjemte.",
+    final: true
+  }
+];
+
+let current = 0;
+
+function startMission() {
+  document.getElementById('introCard').style.display = 'none';
+  renderPosts();
+}
+
+function renderPosts() {
+  const c = document.getElementById('postsContainer');
+  c.innerHTML = '';
+  for (let i = 0; i <= current && i < posts.length; i++) {
+    c.appendChild(buildCard(i));
+  }
+  updateProgress();
+  setTimeout(() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }), 120);
+}
+
+function buildCard(idx) {
+  const p = posts[idx];
+  const solved = idx < current;
+  const div = document.createElement('div');
+  div.className = 'card';
+
+  let inner = `
+    <div class="post-header">
+      <span class="badge">POST ${p.id} / 9</span>
+      <span class="post-title">${p.title}</span>
+      ${solved ? '<span class="solved-mark">✔ LØST</span>' : ''}
+    </div>
+    <div class="briefing">${p.briefing}</div>
+  `;
+
+  if (!solved) {
+    if (p.tireImage) {
+      inner += `<img class="tire-img" src="${TIRE_IMG}" alt="Mystisk dekk">`;
+    }
+    if (p.final) {
+      inner += `<div class="hint-box"><strong>SISTE LEDETRÅD:</strong><br>${p.hint}</div>
+        <button onclick="showComplete()">🥚 OPPDRAG FULLFØRT</button>`;
+    } else {
+      inner += `
+        <div class="hint-box"><strong>WEINBACHS LEDETRÅD:</strong><br>${p.hint}</div>
+        <div class="input-row">
+          <input type="text" id="inp-${idx}" placeholder="TAST INN KODE" onkeydown="if(event.key==='Enter')check(${idx})">
+          <button onclick="check(${idx})">BEKREFT ▶</button>
+        </div>
+        <div class="error" id="err-${idx}">⚠ FEIL KODE — WEINBACH GODTAR IKKE DETTE</div>
+      `;
+    }
+  }
+
+  div.innerHTML = inner;
+  return div;
+}
+
+function check(idx) {
+  const p = posts[idx];
+  const inp = document.getElementById('inp-' + idx);
+  const err = document.getElementById('err-' + idx);
+  const val = inp.value.trim().toUpperCase();
+  const correct = String(p.code).toUpperCase();
+
+  if (val === correct) {
+    current = idx + 1;
+    err.style.display = 'none';
+    renderPosts();
+  } else {
+    err.style.display = 'block';
+    inp.value = '';
+    inp.style.borderColor = '#ff4444';
+    setTimeout(() => { inp.style.borderColor = '#00ff6455'; }, 1000);
+    inp.focus();
+  }
+}
+
+function showComplete() {
+  document.getElementById('postsContainer').style.display = 'none';
+  document.getElementById('progressFill').style.width = '100%';
+  const cs = document.getElementById('completeScreen');
+  cs.style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function updateProgress() {
+  const pct = (current / posts.length) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+}
+</script>
+
+</body>
+</html>
